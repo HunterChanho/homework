@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="EUC-KR" standalone="no"?>
+<resource resourceType="ServiceModule" physicalName="acas0007u0" logicalName="선물옵션/KOFEX계좌정정" resourceGroup="ACb" resourceVersion="3" resourceIOVersion="2" renewalDate="2018-01-02 14:41:29.119" >
+  <input physicalName="acas0007u0_i" logicalName="선물옵션/KOFEX계좌정정_i" resourceGroup="" resourceVersion="" renewalDate="" >
+    <field ioOrder="1" physicalName="prc_tcd" logicalName="처리구분코드" fieldType="char" length="2" decimal="0" desc="처리구분코드" metaGroup="" />
+    <field ioOrder="2" physicalName="acno" logicalName="계좌번호" fieldType="char" length="11" decimal="0" desc="계좌번호" metaGroup="" />
+    <field ioOrder="3" physicalName="pwd" logicalName="비밀번호" fieldType="char" length="8" decimal="0" desc="비밀번호 " metaGroup="" />
+    <field ioOrder="4" physicalName="rct_tcd" logicalName="접수구분코드" fieldType="char" length="2" decimal="0" desc="고객 접수시 유선인지, 내점인지, 온라인 등인지를 구분하는 코드" metaGroup="" />
+    <structure ioOrder="5" physicalName="CUD" logicalName="정정구조체" occurs="1" occursRef="" includeStructureName="acas0007u0_i_sub01" >
+      <field ioOrder="1" physicalName="bkp_nm" logicalName="부기명" fieldType="char" length="40" decimal="0" desc="고객이 실명 외의 계좌명을 원할 경우 사용" metaGroup="" />
+      <field ioOrder="2" physicalName="now_rsts_orz_cd" logicalName="현재실적조직코드" fieldType="char" length="6" decimal="0" desc="실적이 되는 조직의 번호" metaGroup="" />
+      <field ioOrder="3" physicalName="rlnm_cfmt_scd" logicalName="실명확인상태코드" fieldType="char" length="2" decimal="0" desc="계좌에서 관리하는 고객의 실명확인상태구분을 위한 코드" metaGroup="" />
+      <field ioOrder="4" physicalName="rlnm_cfmt_epno" logicalName="실명확인사원번호" fieldType="char" length="6" decimal="0" desc="계좌 개설시 실명을 확인한 사원의 사원번호" metaGroup="" />
+      <field ioOrder="5" physicalName="ac_opn_tcd" logicalName="계좌개설구분코드" fieldType="char" length="2" decimal="0" desc="계좌의 신규내점, 신규전화, 은행제휴, 인터넷 등 개설 경로를 구분하는 코드" metaGroup="" />
+      <field ioOrder="6" physicalName="cfmt_tmd" logicalName="확인시각" fieldType="char" length="4" decimal="0" desc="확인시각" metaGroup="" />
+      <field ioOrder="7" physicalName="ivsr_ccd" logicalName="투자자분류코드" fieldType="char" length="4" decimal="0" desc="투자자분류코드" metaGroup="" />
+      <field ioOrder="8" physicalName="ma_levy_tcd" logicalName="증거금징수구분코드" fieldType="char" length="2" decimal="0" desc="증거금징수구분코드" metaGroup="" />
+      <field ioOrder="9" physicalName="uq_trst_tcd" logicalName="고유신탁구분코드" fieldType="char" length="2" decimal="0" desc="고유신탁구분코드" metaGroup="" />
+      <field ioOrder="10" physicalName="grnd_acno" logicalName="근거계좌번호" fieldType="char" length="11" decimal="0" desc="인터넷 계좌 개설시 근거계좌로 지정한 계좌의 계좌번호" metaGroup="" />
+      <field ioOrder="11" physicalName="cngr_tcd" logicalName="위탁자구분코드" fieldType="char" length="2" decimal="0" desc="위탁자를 국내개인,국내단체,외국개인 등으로 구분한 코드" metaGroup="" />
+    </structure>
+  </input>
+  <output physicalName="acas0007u0_o" logicalName="선물옵션/KOFEX계좌정정_o" resourceGroup="" resourceVersion="" renewalDate="" >
+    <field ioOrder="1" physicalName="ac_scd" logicalName="계좌상태코드" fieldType="char" length="2" decimal="0" desc="계좌상태코드" metaGroup="" />
+    <field ioOrder="2" physicalName="ac_stat_nm" logicalName="계좌상태명" fieldType="char" length="10" decimal="0" desc="계좌상태명" metaGroup="" />
+    <field ioOrder="3" physicalName="ac_opn_dt" logicalName="계좌개설일자" fieldType="char" length="8" decimal="0" desc="계좌를 개설 한 일자" metaGroup="" />
+    <field ioOrder="4" physicalName="cclc_pcd" logicalName="해지유형코드" fieldType="char" length="2" decimal="0" desc="해지유형코드" metaGroup="" />
+    <field ioOrder="5" physicalName="cclc_ptn_nm" logicalName="해지유형명" fieldType="char" length="20" decimal="0" desc="해지유형명" metaGroup="" />
+    <field ioOrder="6" physicalName="acid_yn" logicalName="사고여부" fieldType="char" length="1" decimal="0" desc="사고여부" metaGroup="" />
+    <field ioOrder="7" physicalName="bkp_nm" logicalName="부기명" fieldType="char" length="40" decimal="0" desc="고객이 실명 외의 계좌명을 원할 경우 사용" metaGroup="" />
+    <field ioOrder="8" physicalName="now_rsts_orz_cd" logicalName="현재실적조직코드" fieldType="char" length="6" decimal="0" desc="실적이 되는 조직의 번호" metaGroup="" />
+    <field ioOrder="9" physicalName="rlnm_cfmt_scd" logicalName="실명확인상태코드" fieldType="char" length="2" decimal="0" desc="계좌에서 관리하는 고객의 실명확인상태구분을 위한 코드" metaGroup="" />
+    <field ioOrder="10" physicalName="rlnm_cfmt_epno" logicalName="실명확인사원번호" fieldType="char" length="6" decimal="0" desc="계좌 개설시 실명을 확인한 사원의 사원번호" metaGroup="" />
+    <field ioOrder="11" physicalName="ac_opn_tcd" logicalName="계좌개설구분코드" fieldType="char" length="2" decimal="0" desc="계좌의 신규내점, 신규전화, 은행제휴, 인터넷 등 개설 경로를 구분하는 코드" metaGroup="" />
+    <field ioOrder="12" physicalName="cfmt_tmd" logicalName="확인시각" fieldType="char" length="4" decimal="0" desc="확인시각" metaGroup="" />
+    <field ioOrder="13" physicalName="ivsr_ccd" logicalName="투자자분류코드" fieldType="char" length="4" decimal="0" desc="투자자분류코드" metaGroup="" />
+    <field ioOrder="14" physicalName="ma_levy_tcd" logicalName="증거금징수구분코드" fieldType="char" length="2" decimal="0" desc="증거금징수구분코드" metaGroup="" />
+    <field ioOrder="15" physicalName="uq_trst_tcd" logicalName="고유신탁구분코드" fieldType="char" length="2" decimal="0" desc="고유신탁구분코드" metaGroup="" />
+    <field ioOrder="16" physicalName="grnd_acno" logicalName="근거계좌번호" fieldType="char" length="11" decimal="0" desc="인터넷 계좌 개설시 근거계좌로 지정한 계좌의 계좌번호" metaGroup="" />
+    <field ioOrder="17" physicalName="cngr_tcd" logicalName="위탁자구분코드" fieldType="char" length="2" decimal="0" desc="위탁자를 국내개인,국내단체,외국개인 등으로 구분한 코드" metaGroup="" />
+    <field ioOrder="18" physicalName="cs_pcd" logicalName="고객유형코드" fieldType="char" length="2" decimal="0" desc="고객유형코드" metaGroup="" />
+    <field ioOrder="19" physicalName="nts_icmr_tcd" logicalName="국세청소득자구분코드" fieldType="char" length="3" decimal="0" desc="[전문] 국세청에서 소득자를 구분하는 코드.  외부전문코드" metaGroup="" />
+    <field ioOrder="20" physicalName="ac_opn_br_cd" logicalName="계좌개설지점코드" fieldType="char" length="3" decimal="0" desc="계좌개설지점코드" metaGroup="" />
+  </output>
+</resource>
