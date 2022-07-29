@@ -1,53 +1,56 @@
 package com.example.test33.service;
 
+import com.example.test33.model.DataRequest;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.File;
-import java.nio.file.Paths;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.springframework.stereotype.Service;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLEncoder;
+
 
 @Service
 @Slf4j
 public class TestService {
+    public JSONArray getData(DataRequest dataRequest, String likeItmsNm, String basDt) {
+        log.info("service 시작");
+        // 인증키 (개인이 받아와야함)
+        String key = "2IAKtSM2vo4T0sUbYZvZ5czzdbn3D8ojfWNT2Ji5jtsD1%2B5%2FZoVVBFmfzzYfChNMSYbN9WkMdKfGeepsiOar8Q%3D%3D";
 
-    public void getData() {
+        // 파싱한 데이터를 저장할 변수
+        String result = "";
+
+        JSONArray item = null;
+
         try {
-            // 파일 경로
-            File stocks = new File(Paths.get("").toAbsolutePath()+"/src/main/java/legacy/acas0007u0.xml");
-            // 파일 읽기
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(stocks);
-            doc.getDocumentElement().normalize();
+            likeItmsNm = URLEncoder.encode(likeItmsNm, "UTF-8");
 
-            System.out.println("파일출력");
+            URL url = new URL("http://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey="
+                    + key + "&numOfRows=50&pageNo=1&resultType=json&likeItmsNm=" + likeItmsNm + "&basDt=" + basDt);
 
-            // 읽어들인 파일 불러오기
-            NodeList nodes = doc.getElementsByTagName("stock");
-            for (int k = 0; k < nodes.getLength(); k++) {
-                Node node = nodes.item(k);
+            BufferedReader bf;
 
-                if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    Element element = (Element) node;
-                    System.out.println("Stock Symbol: " + getValue("symbol", element));
-                    System.out.println("Stock Price: " + getValue("price", element));
-                    System.out.println("Stock Quantity: " + getValue("quantity", element));
-                }
-            }
+            bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+
+            result = bf.readLine();
+
+            JSONParser jsonParser = new JSONParser();
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(result);
+
+            JSONObject response = (JSONObject) jsonObject.get("response");
+            JSONObject body = (JSONObject) response.get("body");
+            JSONObject items = (JSONObject) body.get("items");
+
+            item = (JSONArray) items.get("item");
+
         } catch (Exception e) {
-            log.info(e.getMessage());
+            e.printStackTrace();
         }
-    }
-
-    private static String getValue(String tag, Element element) {
-        NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
-        Node node = (Node) nodes.item(0);
-        return node.getNodeValue();
+        return item;
     }
 }
