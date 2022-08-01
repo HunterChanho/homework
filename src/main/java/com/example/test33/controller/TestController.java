@@ -1,6 +1,5 @@
 package com.example.test33.controller;
 
-import com.example.test33.model.DataRequest;
 import com.example.test33.service.TestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,13 +12,21 @@ import org.springframework.web.bind.annotation.*;
 public class TestController {
     private final TestService testService;
 
-    @GetMapping("/getData")
-    public JSONArray getData(DataRequest dataRequest,
-                             @RequestParam("likeItmsNm") String likeItmsNm,
-                             @RequestParam("basDt") String basDt
+    // 주식 리스트 조회
+    @GetMapping("/getDataList")
+    public JSONArray getDataList(
+            @RequestParam("likeItmsNm") String likeItmsNm,
+            @RequestParam("beginBasDt") String beginBasDt,
+            @RequestParam("endBasDt") String endBasDt
     ) {
-        log.info("controller 시작");
-        return testService.getData(dataRequest, likeItmsNm, basDt);
+        log.info("getDataList controller 시작");
+        return testService.getDataList(likeItmsNm, beginBasDt, endBasDt);
     }
 
+    // 주식 배당금 조회
+    @GetMapping("/getDvdnAmt")
+    public JSONArray getDvdnAm() {
+        log.info("getDvdnAm controller 시작");
+        return testService.getDvdnAmt();
+    }
 }
